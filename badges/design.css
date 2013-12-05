@@ -1,0 +1,22 @@
+table{
+  border-collapse:collapse;
+  border: 1px solid #58D3F7;
+}
+
+.center{
+   text-align:center;
+}
+
+td{
+  padding:3px;
+  border: 1px solid #58D3F7;
+}
+
+th{
+  padding:10px;
+  border: 1px solid #58D3F7;
+  background-color: #81DAF5;
+}
+
+input.blue {
+  background-color: #81F7F3;}
