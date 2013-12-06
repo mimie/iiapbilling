@@ -767,4 +767,89 @@ function getContactPhone(PDO $dbh,$contactId){
  return $phone;
 
 }
+
+function generatePDFBilling($html,$billingNo,$fileGenerator){
+  
+//   $date = time();
+   $fileName = $billingNo.".pdf";
+
+   $dompdf = new DOMPDF();
+   $dompdf->load_html($html);
+   $dompdf->set_paper('Letter','portrait');
+ 
+   $dompdf->render();
+
+   file_put_contents($fileName, $dompdf->output( array("compress" => 0) ));
+   $fileGenerator;
+   header("Location: ../../$fileGenerator");
+}
+
+function sendMail($email,$billingNo,$body){
+
+         require "Mail.php";
+
+         $pdfFilename = $billingNo.".pdf";
+         //File
+         $file = fopen('../../pdf/membershipBilling/'.$pdfFilename, 'rb');
+         $data = fread($file,filesize('../../pdf/membershipBilling/'.$pdfFilename));
+         fclose($file);
+ 
+         $semi_rand = md5(time());
+         $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";
+         $fileatttype = "application/pdf";
+ 
+ 
+         $from = "Institute of Internal Auditors Philippines <iia-p.org>";
+         $subject = "Sample Test IIAP Membership Annual Registration Billing";
+ 
+         $host = "ssl://imperium.mail.pairserver.com";
+         $port = "465";
+         $to = $email;
+         $username = "outbound@imperium.ph";
+         $password = "imperiummail";
+
+         /**$host = "smtp.mandrillapp.com";
+         $port = "587 ";
+         $to = $email;
+         $username = "mayet.cardenas@iia-p.org";
+         $password = "ZUwm_S2vRHiKW0IRgJXybg";**/
+
+         $headers = array ('From' => $from,
+           'To' => $to,
+           'Subject' => $subject,
+             'Content-type' => 'multipart/mixed; boundary = "'.$mime_boundary.'"',
+             'MIME-Version' => 1.0);
+         $smtp = Mail::factory('smtp',
+           array ('host' => $host,
+             'port' => $port,
+             'auth' => true,
+             'username' => $username,
+             'password' => $password,));
+
+
+         $message = " \n\n" .
+                    "--{$mime_boundary}\n" .
+                    "Content-Type: text/html;charset=\"ISO-8859-1\n" .
+                    "Content-Transfer-Encoding: 7bit\n\n" .
+                    "\n\n".
+                    "$body";
+ 
+        $data = chunk_split(base64_encode($data));
+        $message .= "--{$mime_boundary}\n" .
+                    "Content-Type: {$fileatttype};\n" .
+                    " name=\"{$pdfFilename}\"\n" .
+                    "Content-Disposition: attachment;\n" .
+                    " filename=\"{$pdfFilename}\"\n" .
+                    "Content-Transfer-Encoding: base64\n\n" .
+                    $data . "\n\n" .
+                    "-{$mime_boundary}-\n";
+ 
+        $mail = $smtp->send($to, $headers, $message);
+        echo "Sending mail to: $to". "<br>";
+        if (PEAR::isError($mail)) {
+          echo ("<p>" . $mail->getMessage() . "</p>");
+         } else {
+          echo ("<p>Message successfully sent!</p>");
+         }
+}
 ?>

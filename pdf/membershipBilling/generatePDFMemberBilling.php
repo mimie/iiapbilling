@@ -205,5 +205,6 @@
 </html>
 <?php
   $html = ob_get_clean();
-  generatePDFMemberBilling($html,$billingNo);  
+  $file = "membershipBilling.php";
+  generatePDFBilling($html,$billingNo,$file);  
 ?>
