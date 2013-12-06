@@ -105,7 +105,7 @@
 
    echo "<br><br><br>";
    echo "<table border='1' width='100%'>";
-   echo "<tr><th colspan='14'>Individual Billing</th></tr>";
+   echo "<tr><th colspan='15'>Individual Billing</th></tr>";
    echo "<tr>";
    echo "<th>Participant Name</th>";
    echo "<th>Email</th>";
@@ -121,6 +121,7 @@
    echo "<th>Billing Reference No.</th>";
    echo "<th>Billing Date</th>";
    echo "<th>Billing Address</th>";
+   echo "<th>Billing PDF Download</th>";
    echo "</tr>";
    
 
@@ -190,6 +191,8 @@
           echo "<td align='center'>$billingNo</td>";
           echo "<td align='center'>$billingDate</td>";
           echo "<td align='center'>$billingAddress</td>";
+          echo "<td><a href='pdf/individualBilling/generatePDFIndividualBilling.php?billingRef=$billingNo&eventId=$eventId' title='Click to generate pdf'><img src='images/pdf_me.png' width='50' height='50'></td>";
+     
        }
 
        elseif($isBillGenerated == 0){
@@ -201,6 +204,7 @@
           echo "<td align='center'>Number</td>";
           echo "<td align='center'>Date</td>";
           echo "<td align='center'>Address</td>";
+          echo "<td><img src='images/not_available_download.png' width='40' height='40'></td>";
        }
           echo "<tr>";
       
