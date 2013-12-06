@@ -1,7 +1,11 @@
 <html>
 <head>
+<meta charset="utf-8">
 <title>Register</title>
   <link rel="stylesheet" type="text/css" href="menu.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 </head>
 <body>
 <?php
@@ -29,7 +33,7 @@
   <table border = '3' style='border-collapse:collapse;border-color:#0174DF;border-style:ridge;'>
    <tr>
     <td>
-      <form name="register" method="post">
+      <form id="registration" name="register" method="post">
       <table style='padding:10px;'>
         <tr>
          <td align='right'><b>Firstname</b></td>
@@ -61,10 +65,10 @@
         </tr>
         <tr>
          <td></td>
-         <td align='right'><input type="submit" value="Register" name='register' /></td>
+         <td align='right'><input id="register" type="submit" value="Register" name='register' /></td>
         </tr>
-      </table>
       </form>
+      </table>
     </td>
    </tr>
   </table>
@@ -101,15 +105,21 @@
                     "lastname" => "$lastname",
                     "designation" => "$designation",
     );
-   
-    echo '<script type="text/javascript">';
-    echo 'alert("New user successfully registered.")';
-    echo '</script>';
+
     insertUser($dbh,$registration);
-    header('Location: login.php'); 
+    //header('Location: login.php'); 
    
   }
 
 ?>
+
 </body>
+<script>
+  $("#registration").submit(function(){
+     
+    var username = $('input:text[name=username]').val();
+    alert("You have succcessfully registered an account for username "+username+".");
+  });
+
+</script>
 </html>
