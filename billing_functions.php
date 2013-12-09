@@ -781,7 +781,7 @@ function generatePDFBilling($html,$billingNo,$fileGenerator){
 
    file_put_contents($fileName, $dompdf->output( array("compress" => 0) ));
    $fileGenerator;
-   //header("Location: ../../$fileGenerator");
+   header("Location: ../../$fileGenerator");
 }
 
 function sendMail($email,$billingNo,$body){
