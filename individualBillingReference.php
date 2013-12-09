@@ -91,8 +91,8 @@
 
   $eventEndDate = $eventDetails["end_date"];
   $eventEndDate = date("F j Y", strtotime($eventEndDate));
-//  $locationDetails = getEventLocation($dbh,$eventId);
-//  $eventLocation = formatEventLocation($locationDetails);
+  $locationDetails = getEventLocation($dbh,$eventId);
+  $eventLocation = formatEventLocation($locationDetails);
 
   $contactId = getParticipantContactId($dbh, $participantId, $eventId);
 
@@ -166,8 +166,8 @@
       </tr>   
       <tr>
         <td colspan="2" height="350px" style="border:2px solid black; vertical-align:top;" align="left"><?=$eventName?>
-               <br>On&nbsp;<?//=$dueDate?>&nbsp;to&nbsp;<?//=$eventEndDate?>
-               <br>At&nbsp;<?//=$eventLocation?></td>
+               <br>On&nbsp;<?=$dueDate?>&nbsp;to&nbsp;<?=$eventEndDate?>
+               <br>At&nbsp;<?=$eventLocation?></td>
         <td style="border:2px solid black; vertical-align:top;" align="center"><br><?=$currencyFormat?></td> 
       </tr>
       <tr>
