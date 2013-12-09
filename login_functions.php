@@ -32,6 +32,18 @@ function getUserDetails(PDO $dbh,$username){
    return $userDetails;
 }
 
+function getUserId(PDO $dbh,$username){
+
+  $sql = $dbh->prepare("SELECT id FROM billing_users
+                        WHERE username = '$username'
+                       ");
+  $sql->execute();
+  $result = $sql->fetch(PDO::FETCH_ASSOC);
+  $userId = $result["id"];
+
+  return $userId;
+}
+
 function validateUser()
 {
     session_regenerate_id (); //this is a security measure
