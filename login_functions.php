@@ -44,6 +44,25 @@ function getUserId(PDO $dbh,$username){
   return $userId;
 }
 
+function getUserFullName(PDO $dbh,$userId){
+
+  $sql = $dbh->prepare("SELECT firstname,middlename,lastname FROM billing_users
+                        WHERE id = '$userId'
+                       ");
+  $sql->execute();
+  $result = $sql->fetch(PDO::FETCH_ASSOC);
+  $firstname = $result["firstname"];
+  $middlename = $result["middlename"];
+  $lastname = $result["lastname"];
+
+  $middleInitial = $middlename[0];
+
+  $fullName = $firstname." ".$middleInitial.". ".$lastname;
+  $fullName = strtoupper($fullName);
+  
+  return $fullName;
+}
+
 function validateUser()
 {
     session_regenerate_id (); //this is a security measure
@@ -72,23 +91,23 @@ function headerDiv(){
 
 }
 
-function logoutDiv(){
+function logoutDiv($userId){
 /**  $html = "<div align='right' width='100%' height='10px' style='background-color:black;padding:6px;'>"
         . "<a href='logout.php'>Logout</a>"
         . "</div>";**/
 
      $html = "<div width='100%' style='background-color:black; padding:1px;'>"
            . "<ul>"
-           . "<li><a href='events2.php'>Events</a></li>"
+           . "<li><a href='events2.php?user=$userId'>Events</a></li>"
            . "<li><a href='#'>Membership</a>"
-           . "<ul><li><a href='membershipBilling.php'>Membership Billing</a></li></ul>"
+           . "<ul><li><a href='membershipBilling.php?user=$userId'>Membership Billing</a></li></ul>"
            . "</li>"
            . "<li><a href='#'>CIA Review</a></li>"
            . "<li><a href='#'><img src='images/settings.png' width='20' height='20' style='float:left;'>&nbsp;Settings</a>"
            . "<ul>"
-           . "<li><a href='account.php'><img src='images/my_account.png' width='20' height='20' style='float:left;'>&nbsp;My Account</a>"
+           . "<li><a href='account.php?user=$userId'><img src='images/my_account.png' width='20' height='20' style='float:left;'>&nbsp;My Account</a>"
            . "</li>"
-           . "<li><a href='register.php'><img src='images/register_account.png' width='20' height='20' style='float:left;'>&nbsp;Register New Account</a>"
+           . "<li><a href='register.php?user=$userId'><img src='images/register_account.png' width='20' height='20' style='float:left;'>&nbsp;Register New Account</a>"
            . "</li>"
            . "</ul>"
            . "</li>"
