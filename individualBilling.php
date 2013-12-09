@@ -201,7 +201,7 @@
            
           else{
        //     echo "<td><img src='images/not_available_download.png' width='40' height='40'></td>";
-             echo "<td><a href='pdf/individualBilling/generatePDFIndividualBilling.php?billingRef=$billingNo&eventId=$eventId' title='Click to generate pdf'><img src='images/pdf_me.png' width='50' height='50'> </a></td>";
+             echo "<td><a href='pdf/individualBilling/generatePDFIndividualBilling.php?billingRef=$billingNo&eventId=$eventId&user=$userId' title='Click to generate pdf'><img src='images/pdf_me.png' width='50' height='50'> </a></td>";
           }
        }
 
