@@ -98,8 +98,8 @@
 
   //$tax = round($feeAmount/9.3333,2);
   //$netVat = round($feeAmount - $tax,2);
-  $tax = $billingDetails["vat"];
-  $netVat = $billingDetails["subtotal"];
+  $tax = number_format($billingDetails["vat"],2);
+  $netVat = number_format($billingDetails["subtotal"],2);
 
 ?>
 <div id="main">
