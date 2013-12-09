@@ -1,6 +1,7 @@
 <?php
 
-  //ob_start();
+  ob_start();
+  require dirname(__FILE__) . '/../../dompdf-master/dompdf_config.inc.php';
 ?>
 <html>
 <head>
@@ -254,5 +255,9 @@
 </body>
 </html>
 <?php
+
+  $html = ob_get_clean();
+  $location = "individualBilling.php?eventId=$eventId&billingType=individual";
+  generatePDFBilling($html,$billingNo,$location);
 
 ?>
