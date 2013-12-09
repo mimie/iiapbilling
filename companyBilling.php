@@ -25,6 +25,8 @@
      header('Location: login.php');
      die();
    }
+
+   @$userId = $_GET["user"];
   
    $logout = logoutDiv();
    echo $logout;
@@ -40,7 +42,7 @@
    $eventLocation = formatEventLocation($locationDetails);
    //navigation
    echo "<div id = 'navigation'>";
-   echo "<a href='events2.php'><b>Event List</b></a>";
+   echo "<a href='events2.php?&user=$userId'><b>Event List</b></a>";
    echo "&nbsp;&nbsp;<b>&gt;</b>&nbsp;";
    echo "<i>$eventName</i>";
    echo "</div>";
@@ -72,8 +74,8 @@
    echo "<div id='billingNav'>";
    echo "<table width='100%'>";
    echo "<tr>";
-   echo "<td align='center' bgcolor='#084B8A'><a href='individualBilling.php?eventId=$eventId&billingType=individual'>INDIVIDUAL BILLING</a></td>";
-   echo "<td align='center'><a href='companyBilling.php?eventId=$eventId&billingType=company'>COMPANY BILLING</td>";
+   echo "<td align='center' bgcolor='#084B8A'><a href='individualBilling.php?eventId=$eventId&billingType=individual&user=$userId'>INDIVIDUAL BILLING</a></td>";
+   echo "<td align='center'><a href='companyBilling.php?eventId=$eventId&billingType=company&user=$userId'>COMPANY BILLING</td>";
    echo "</tr>";
    echo "</table>";
    echo "</div>";

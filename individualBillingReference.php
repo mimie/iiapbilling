@@ -68,6 +68,8 @@
 
   @$billingNo = $_GET["billingRef"];
   @$eventId = $_GET["eventId"];
+  @$userId = $_GET["user"];
+  $generator = getUserFullName($dbh,$userId);
   //$billingNo = '3154';
   //$eventId = '233';
   $billingDetails = getIndividualBillingDetails($dbh,$billingNo,$eventId);
@@ -191,7 +193,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="2"><b><i><font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ARTHELEI V. MENDOZA</i></b>
+        <td colspan="2"><b><i><font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$generator?></i></b>
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &Oslash;&nbsp;If by check, <font color="red"><b><u>should be</u></b></font> made payable to:</font>
         </td>

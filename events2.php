@@ -32,12 +32,15 @@
     die();
   }
 
+  @$userId = $_GET["user"];
+
   echo "<div align='center' style='padding:16px;'>";  
-  $logout = logoutDiv();
+  $logout = logoutDiv($userId);
   echo $logout;
   $header = headerDiv();
   echo $header;
   echo "</div>";
+
 ?>
 <center>
 <div align='center' style='width:50%;'>
@@ -76,7 +79,7 @@
   $endDate = date("Y-m-d",strtotime($endDate));
 
    $eventIds = getEventByDate($startDate,$endDate);
-   $eventsDisplay = displayEvents($eventIds);
+   $eventsDisplay = displayEvents($eventIds,$userId);
    echo $eventsDisplay;
   }
 
@@ -84,7 +87,7 @@
 
     $eventSearch = $_POST["eventName"];
     $eventIds = searchEventName($eventSearch);
-    $eventsDisplay = displayEvents($eventIds);
+    $eventsDisplay = displayEvents($eventIds,$userId);
     echo $eventsDisplay;
 
   }
@@ -93,7 +96,7 @@
    
     $eventTypeId = $_POST["eventType"];
     $eventIds = searchEventType($eventTypeId);
-    $eventsDisplay = displayEvents($eventIds);
+    $eventsDisplay = displayEvents($eventIds,$userId);
     echo $eventsDisplay;
   }
 
@@ -101,7 +104,7 @@
     $allEvents = getAllEvents();
     $eventIds = array_keys($allEvents);
 
-    $eventsDisplay = displayEvents($eventIds);
+    $eventsDisplay = displayEvents($eventIds,$userId);
     echo $eventsDisplay;
   }
 

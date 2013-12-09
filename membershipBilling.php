@@ -21,8 +21,10 @@
     die();
   }
 
+  @$userId = $_GET["user"];
+
   echo "<div style='padding:16px;'>";  
-  $logout = logoutDiv();
+  $logout = logoutDiv($userId);
   echo $logout;
   $header = headerDiv();
   echo $header;

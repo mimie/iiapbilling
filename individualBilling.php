@@ -23,7 +23,9 @@
     die();
   }
   
-  $logout = logoutDiv();
+  $userId = $_GET["user"];
+  
+  $logout = logoutDiv($userId);
   echo $logout;
   echo "<br>";
 
@@ -40,7 +42,7 @@
    $eventLocation = formatEventLocation($locationDetails);
    //navigation
    echo "<div id = 'navigation'>";
-   echo "<a href='events2.php'><b>Event List</b></a>";
+   echo "<a href='events2.php?&user=$userId'><b>Event List</b></a>";
    echo "&nbsp;&nbsp;<b>&gt;</b>&nbsp;";
    echo "<i>$eventName</i>";
    echo "</div>";
@@ -72,8 +74,8 @@
    echo "<div id='billingNav'>";
    echo "<table width='100%'>";
    echo "<tr>";
-   echo "<td align='center'><a href='individualBilling.php?eventId=$eventId&billingType=individual'>INDIVIDUAL BILLING</a></td>";
-   echo "<td align='center' bgcolor='#084B8A'><a href='companyBilling.php?eventId=$eventId&billingType=company'>COMPANY BILLING</td>";
+   echo "<td align='center'><a href='individualBilling.php?eventId=$eventId&billingType=individual&user=$userId'>INDIVIDUAL BILLING</a></td>";
+   echo "<td align='center' bgcolor='#084B8A'><a href='companyBilling.php?eventId=$eventId&billingType=company&user=$userId'>COMPANY BILLING</td>";
    echo "</tr>";
    echo "</table>";  
    echo "</div>";
@@ -166,11 +168,11 @@
           $billingAddress = getIndividualBillingAddress($dbh,$participantId,$eventId);
    
           if($eventTypeName == 'CON'){
-             echo "<a href='individualConvention.php?billingRef=$billingNo&eventId=$eventId' style='text-decoration:none;' target ='_blank'><img src='printer-icon.png' width='50' height='50'>";
+             echo "<a href='individualConvention.php?billingRef=$billingNo&eventId=$eventId&user=$userId' style='text-decoration:none;' target ='_blank'><img src='printer-icon.png' width='50' height='50'>";
           }
 
           else{
-             echo "<a href='individualBillingReference.php?billingRef=$billingNo&eventId=$eventId' style='text-decoration:none;' target ='_blank'><img src='printer-icon.png' width='50' height='50'>";
+             echo "<a href='individualBillingReference.php?billingRef=$billingNo&eventId=$eventId&user=$userId' style='text-decoration:none;' target ='_blank'><img src='printer-icon.png' width='50' height='50'>";
           }
           echo "<br>Print</a>";
           echo "</td>";
