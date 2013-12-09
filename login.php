@@ -54,7 +54,8 @@
 
       else{
         validateUser();
-        header('Location: events2.php');
+        $userId = getUserId($dbh,$username);
+        header("Location: events2.php?user=$userId");
       }
   }
  
