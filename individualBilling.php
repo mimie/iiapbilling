@@ -194,12 +194,12 @@
      
           $pdfFile = "pdf/individualBilling/".$billingNo.".pdf";
           if(file_exists($pdfFile)){
-            //echo "<td><a href='pdf/individualBilling/'".$billingNo.".pdf' title='Click to download pdf file'><img src='images/pdf_download.jpg' width='40' height='40'></td>";
              echo "<td><a href='pdf/individualBilling/".$billingNo.".pdf' download='IIAP_MembershipBilling_".$billingNo."' title='Click to download pdf file'><img src='images/pdf_download.jpg' width='40' height='40'></td>";
           }
            
           else{
-            echo "<td><img src='images/not_available_download.png' width='40' height='40'></td>";
+       //     echo "<td><img src='images/not_available_download.png' width='40' height='40'></td>";
+             echo "<td><a href='pdf/individualBilling/generatePDFIndividualBilling.php?billingRef=$billingNo&eventId=$eventId' title='Click to generate pdf'><img src='images/pdf_me.png' width='50' height='50'> </a></td>";
           }
        }
 
@@ -212,6 +212,7 @@
           echo "<td align='center'>Number</td>";
           echo "<td align='center'>Date</td>";
           echo "<td align='center'>Address</td>";
+          echo "<td><img src='images/not_available_download.png' width='40' height='40'></td>";
 
        }
           echo "<tr>";
