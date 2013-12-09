@@ -15,7 +15,7 @@ function getEventByDate($startDate,$endDate){
   return $eventIds;
 }
 
-function displayEvents($eventIds){
+function displayEvents($eventIds,$userId){
 
   $allEvents = getAllEvents();
   $html = "<table align='center' border='1'>"
@@ -35,8 +35,8 @@ function displayEvents($eventIds){
     $html = $html."<tr>"
           ."<td>$title</td>"
           ."<td>".formatDate($date)."</td>"
-          ."<td align='center'><a href='participantListing.php?eventId=".$id."'><img src='participants.png' height='50' width='50'></a></td>"
-          ."<td align='center'><a href='individualBilling.php?eventId=".$id."&billingType=individual'><img src='billing_icon.png' height='50' width='70'></a></td>"
+          ."<td align='center'><a href='participantListing.php?eventId=".$id."&user=".$userId."'><img src='participants.png' height='50' width='50'></a></td>"
+          ."<td align='center'><a href='individualBilling.php?eventId=".$id."&billingType=individual&user=".$userId."'><img src='billing_icon.png' height='50' width='70'></a></td>"
           ."</tr>";
 
   }
