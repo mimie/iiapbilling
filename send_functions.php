@@ -53,8 +53,6 @@ function getEmailIndividualBilling(PDO $dbh, $contactId,$eventId){
   $email = $details["email"];
 
   return $email;
-
-  
 }
 
 
