@@ -7,13 +7,13 @@
 <head>
 <title>Billing With Vat</title>
 <style>
-#main{
-  border: 3px solid #0000FF;
+body{
+  border: 2px solid #0000FF;
   background-image:url('../../images/watermark.png');
   background-repeat:no-repeat;
   background-position:center;
   background-size:350px 300px;
-  padding: 2px 2px 2px 2px;
+  padding: 3px 3px 3px 3px;
 
 }
 
@@ -187,7 +187,7 @@
         </td>
         </tr>
         <tr>
-          <td colspan="2"><b><i><font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ARTHELEI V. MENDOZA</i></b>
+          <td colspan="2"><b><i><font style="font-size:12px;font-family:Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ARTHELEI V. MENDOZA</i></b>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &Oslash;&nbsp;If by check, <font color="red"><b><u>should be</u></b></font> made payable to:</font>
           </td>
@@ -203,7 +203,7 @@
          </td>
         <tr><td><br></td></tr>
         <tr>
-         <td colspan="3"><font style="font-size:13px;font-family:Arial">
+         <td colspan="3"><font style="font-size:12px;font-family:Arial">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &Oslash;&nbsp;If thru bank telegraphic transfer, include <b><u>P250 /$ 6.50,</b></u> in your payment to cover for bank charges.
@@ -212,7 +212,7 @@
        </tr>
        <tr><td></td></tr>
        <tr>
-        <td colspan="3"><font style="font-size:13px;font-family:Arial">
+        <td colspan="3"><font style="font-size:12px;font-family:Arial">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &Oslash;&nbsp;If by SM Department Store Bills Payment Center,
@@ -220,7 +220,7 @@
        </td>
       </tr>
       <tr>
-       <td colspan="3"><font style="font-size:13px;font-family:Arial">
+       <td colspan="3"><font style="font-size:12px;font-family:Arial">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;Please indicate the SM Department Store branch where you are transacting and present your<br>
