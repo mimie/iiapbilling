@@ -128,7 +128,7 @@ function displayMemberBilling($dbh,array $members,$expiredDate,$userId){
           $year = $memberBillingYear;
           $billingId = getBillingId($dbh,$membershipId,$year);
           $html = $html . "<td>"
-                . "<a href='memberBillingReference.php?billingId=$billingId' target='_blank' title='Click to print membership bill' style='text-decoration: none;'>"
+                . "<a href='memberBillingReference.php?billingId=$billingId&user=$userId' target='_blank' title='Click to print membership bill' style='text-decoration: none;'>"
                 . "<img src='images/printer-icon.png' width='40' height='40'><br>Print"
                 . "</a>"
                 . "</td>"
@@ -146,7 +146,7 @@ function displayMemberBilling($dbh,array $members,$expiredDate,$userId){
           }
 
           else{
-             $html = $html . "<td><a href='pdf/membershipBilling/generatePDFMemberBilling.php?billingId=$billingId' title='Click to generate pdf'><img src='images/pdf_me.png' width='50' height='50'> </a></td>"
+             $html = $html . "<td><a href='pdf/membershipBilling/generatePDFMemberBilling.php?billingId=$billingId&user=$userId' title='Click to generate pdf'><img src='images/pdf_me.png' width='50' height='50'> </a></td>"
                    . "</tr>";
           }
       
