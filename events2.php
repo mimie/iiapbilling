@@ -24,6 +24,8 @@
   include 'weberp_functions.php';
   include 'login_functions.php';
  
+  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
+ 
   session_start();
   //if the user has not logged in
   if(!isLoggedIn())
@@ -35,7 +37,7 @@
   @$userId = $_GET["user"];
 
   echo "<div align='center' style='padding:16px;'>";  
-  $logout = logoutDiv($userId);
+  $logout = logoutDiv($dbh,$userId);
   echo $logout;
   $header = headerDiv();
   echo $header;
