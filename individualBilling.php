@@ -7,6 +7,7 @@
 <body>
 <?php
 
+  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
   include 'dbcon.php';
   include 'badges_functions.php';
   include 'weberp_functions.php';
@@ -25,11 +26,10 @@
   
   $userId = $_GET["user"];
   
-  $logout = logoutDiv($userId);
+  $logout = logoutDiv($dbh,$userId);
   echo $logout;
   echo "<br>";
 
-   $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
    $weberpConn = new PDO('mysql:host=localhost;dbname=webapp_civicrm','root','mysqladmin');
    @$eventId = $_GET["eventId"];
 
