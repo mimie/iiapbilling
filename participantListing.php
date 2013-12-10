@@ -31,6 +31,7 @@ function checkedAll(formname)
 </head>
 <body>
 <?php
+  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin'); 
 
   include 'dbcon.php';
   include 'badges_functions.php';
@@ -45,8 +46,10 @@ function checkedAll(formname)
     header('Location: login.php');
     die();
   }
+
+  $userId = $_GET["user"];
   
-  $logout = logoutDiv();
+  $logout = logoutDiv($dbh,$userId);
   echo $logout;
   echo "<br>";
 
