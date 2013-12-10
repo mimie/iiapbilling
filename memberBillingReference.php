@@ -185,15 +185,11 @@
           <font style="font-size:15px"><b><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Institute of Internal Auditors Philippines, Inc.</i></b></font><br><br>
           <font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&Oslash;&nbsp;If thru bank telegraphic transfer, include <b><u>P250 /$ 6.50,</b></u> in your 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;payment to cover for bank charges.</font><br><br>
-          <font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&Oslash;&nbsp;By direct deposit to:</font><br>
-          <font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Institute of Intenal Auditors Philippines, Inc.</b></font><br>
-          <font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Acct No. 691-002-1745</b></font><br>
-          <font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Banco de Oro - Rufino Branch</b></font><br><br>
-         <font style="font-size:13px;font-family:Arial">
-           Please indicate the BDO branch where you are transacting and<br>
-           present your <b>ORIGINAL COPY</b> of the bank validated deposit slip<br>
-           to claim your OFFICIAL RECEIPT. 
-         </font>
+          <font style="font-size:13px;font-family:Arial">&nbsp;&nbsp;&Oslash;&nbsp;If by SM Department Store Bills Payment Center,<br>
+          Please indicate the SM Department Store branch where you are transacting and present your<br>
+          <b>ORIGINAL COPY</b> of the receipt of the payment.
+          </font>
+          
        </td>
       </tr>
      </table>
