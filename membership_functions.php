@@ -132,7 +132,7 @@ function displayMemberBilling($dbh,array $members,$expiredDate,$userId){
                 . "<img src='images/printer-icon.png' width='40' height='40'><br>Print"
                 . "</a>"
                 . "</td>"
-                . "<td><a href='emails/membershipBilling/sendMemberBilling.php?billingId=$billingId' style='text-decoration:none;'><img src='images/email.jpg' width='40' height='40'><br>Send</a></td>"
+                . "<td><a href='emails/membershipBilling/sendMemberBilling.php?billingId=$billingId&user=$userId' style='text-decoration:none;'><img src='images/email.jpg' width='40' height='40'><br>Send</a></td>"
                 . "<td>Pay Later</td>"
                 . "<td>$billingNo</td>"
                 . "<td>$billingDate</td>"
