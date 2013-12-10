@@ -28,7 +28,7 @@
 
    @$userId = $_GET["user"];
   
-   $logout = logoutDiv();
+   $logout = logoutDiv($dbh,$userId);
    echo $logout;
    echo "<br>";
    @$eventId = $_GET["eventId"];
@@ -254,7 +254,7 @@
           $companyBillingRefNo = getCompanyBillingNo($dbh,$companyId,$eventId);
           $companyBillingDate = getCompanyBillingDate($dbh,$companyId,$eventId);
           $companyBillingAddress = "";
-          $participantsLink = participantsLink($companyBillingRefNo,$eventId);
+          $participantsLink = participantsLink($companyBillingRefNo,$eventId,$userId);
         
           if($eventTypeName == 'CON'){
              echo "<td align='center'><a href='companyConvention.php?companyBillingRef=$companyBillingRefNo&eventId=$eventId&orgId=$companyId' style='text-decoration:none' target='_blank'>";
