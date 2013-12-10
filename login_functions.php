@@ -44,6 +44,18 @@ function getUserId(PDO $dbh,$username){
   return $userId;
 }
 
+function getUsername(PDO $dbh,$userId){
+
+  $sql = $dbh->prepare("SELECT username FROM billing_users
+                        WHERE id = '$userId'
+                       ");
+  $sql->execute();
+  $result = $sql->fetch(PDO::FETCH_ASSOC);
+  $username = $result["username"];
+
+  return $username;
+}
+
 function getUserFullName(PDO $dbh,$userId){
 
   $sql = $dbh->prepare("SELECT firstname,middlename,lastname FROM billing_users
@@ -95,6 +107,8 @@ function logoutDiv($userId){
 /**  $html = "<div align='right' width='100%' height='10px' style='background-color:black;padding:6px;'>"
         . "<a href='logout.php'>Logout</a>"
         . "</div>";**/
+
+     
 
      $html = "<div width='100%' style='background-color:black; padding:1px;'>"
            . "<ul>"
