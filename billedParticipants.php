@@ -21,9 +21,10 @@ body{overflow:hidden;}
     header('Location: login.php');
     die();
   }
-  
+ 
+  $userId = $_GET["user"]; 
   echo "<div id='eventDetails'>";
-  $logout = logoutDiv();
+  $logout = logoutDiv($dbh,$userId);
   echo $logout;
 
   @$billingNo = $_GET["billingNo"];
