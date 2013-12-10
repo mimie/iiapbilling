@@ -9,6 +9,7 @@
 </head>
 <body>
 <?php
+  $dbh =  new PDO('mysql:host=localhost;dbname=webapp_civicrm','root', 'mysqladmin');
   include 'login_functions.php';
 
   session_start();
@@ -22,7 +23,7 @@
   @$userId = $_GET["user"];
 
   echo "<div align='center' style='padding:6px;'>";  
-  $logout = logoutDiv($userId);
+  $logout = logoutDiv($dbh,$userId);
   echo $logout;
   echo "</div>";
 
@@ -96,7 +97,6 @@
     $salt = createSalt();
     $hash = hash('sha256', $salt . $hash);
 
-    $dbh =  new PDO('mysql:host=localhost;dbname=webapp_civicrm','root', 'mysqladmin');
 
     $registration = array(
                     "username" => "$username",
