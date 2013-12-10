@@ -784,14 +784,14 @@ function generatePDFBilling($html,$billingNo,$fileGenerator){
    header("Location: ../../$fileGenerator");
 }
 
-function sendMail($email,$billingNo,$body){
+function sendMail($email,$billingNo,$body,$subject,$folder){
 
          require "Mail.php";
 
          $pdfFilename = $billingNo.".pdf";
          //File
-         $file = fopen('../../pdf/membershipBilling/'.$pdfFilename, 'rb');
-         $data = fread($file,filesize('../../pdf/membershipBilling/'.$pdfFilename));
+         $file = fopen("../../pdf/$folder/".$pdfFilename, "rb");
+         $data = fread($file,filesize("../../pdf/$folder/".$pdfFilename));
          fclose($file);
  
          $semi_rand = md5(time());
@@ -800,7 +800,7 @@ function sendMail($email,$billingNo,$body){
  
  
          $from = "Institute of Internal Auditors Philippines <iia-p.org>";
-         $subject = "Sample Test IIAP Membership Annual Registration Billing";
+         //$subject = "Sample Test IIAP Membership Annual Registration Billing";
  
          $host = "ssl://imperium.mail.pairserver.com";
          $port = "465";
