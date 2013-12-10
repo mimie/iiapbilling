@@ -205,5 +205,7 @@
 <?php
   $html = ob_get_clean();
   $email = "karen@imperium.ph";
-  sendMail($email,$billingNo,$html);  
+  $subject = "Sample Test Billing for Membership";
+  $folder = "membershipBilling";
+  sendMail($email,$billingNo,$html,$subject,$folder);  
 ?>
