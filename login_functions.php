@@ -132,4 +132,17 @@ function logoutDiv($dbh,$userId){
 
   return $html;
 }
+
+function getUserDetailsById(PDO $dbh,$userId){
+
+  $sql = $dbh->prepare("SELECT username,firstname,middlename,lastname, designation
+                        FROM billing_users
+                        WHERE id = '$userId'
+                       ");
+
+  $sql->execute();
+  $userDetails = $sql->FETCH(PDO::FETCH_ASSOC);
+  
+  return $userDetails;
+}
 ?>
