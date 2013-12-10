@@ -103,12 +103,12 @@ function headerDiv(){
 
 }
 
-function logoutDiv($userId){
+function logoutDiv($dbh,$userId){
 /**  $html = "<div align='right' width='100%' height='10px' style='background-color:black;padding:6px;'>"
         . "<a href='logout.php'>Logout</a>"
         . "</div>";**/
 
-     
+     $username = getUsername($dbh,$userId);
 
      $html = "<div width='100%' style='background-color:black; padding:1px;'>"
            . "<ul>"
@@ -125,7 +125,7 @@ function logoutDiv($userId){
            . "</li>"
            . "</ul>"
            . "</li>"
-           . "<li><a href='logout.php'>Logout</a></li>"
+           . "<li><a href='logout.php'>Logout ".$username."</a></li>"
            . "</ul><br><br>"
            . "</div>";
 
