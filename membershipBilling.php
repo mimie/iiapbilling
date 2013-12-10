@@ -140,7 +140,7 @@
 
 <?php
 
-  $displayBilling = displayMemberBilling($dbh,$members,$expiredDate);
+  $displayBilling = displayMemberBilling($dbh,$members,$expiredDate,$userId);
   echo $displayBilling;
   echo "</form>";
   echo "</div>";

@@ -71,7 +71,7 @@ function checkMembershipBilling($dbh,$membershipId,$memberBillingYear){
 
 
 
-function displayMemberBilling($dbh,array $members,$expiredDate){
+function displayMemberBilling($dbh,array $members,$expiredDate,$userId){
   
   $expiredYear = date("Y",strtotime($expiredDate));
   $memberBillingYear = intval($expiredYear) + 1;
@@ -106,7 +106,7 @@ function displayMemberBilling($dbh,array $members,$expiredDate){
     $company = $details["company"];
     $amount = $details["fee_amount"];
     $address = mb_convert_encoding($details["address"], "UTF-8");
-    $membersLinkInfo = membersLink($membershipId);
+    $membersLinkInfo = membersLink($membershipId,$userId);
     $infoBilling = checkMembershipBilling($dbh,$membershipId,$memberBillingYear);
     $checkBillExist = $infoBilling["exist"];
     $billingNo = $infoBilling["billing_no"];
@@ -171,12 +171,12 @@ function displayMemberBilling($dbh,array $members,$expiredDate){
   return $html;
 }
 
-function membersLink($membershipId){
+function membersLink($membershipId,$userId){
 
 
-  $link = "<a href=\"membership_info.php?id=$membershipId\""
+  $link = "<a href=\"membership_info.php?id=$membershipId&user=$userId\""
         . "title='Click to view membership information'"
-        . "onclick=\"javascript:void window.open('membership_info.php?id=$membershipId','1384398816566','width=600,height=400,toolbar=1,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');"
+        . "onclick=\"javascript:void window.open('membership_info.php?id=$membershipId&user=$userId','1384398816566','width=600,height=400,toolbar=1,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');"
         . "return false;\">"
         . "<img src='view_member.png'>"
         . "</a>"; 

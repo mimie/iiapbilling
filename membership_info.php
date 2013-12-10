@@ -7,6 +7,7 @@
 </head>
 <body>
 <?php
+  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
   include 'login_functions.php';
   include 'membership_functions.php';
   include 'billing_functions.php';
@@ -19,12 +20,12 @@
     die();
   }
 
+  $userId = $_GET["user"];
   $id = $_GET["id"];
   echo "<div style='padding:16px;' width='100%'>";  
-  $logout = logoutDiv();
+  $logout = logoutDiv($dbh,$userId);
   echo $logout;
 
-  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
   $currentYear = date('Y');
   $expiredDate = date('Y-m-d',strtotime($currentYear.'-12-31'));
 
