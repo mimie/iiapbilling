@@ -9,6 +9,7 @@
 </head>
 <body>
 <?php
+  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
   include 'login_functions.php';
   include 'membership_functions.php';
   include 'billing_functions.php';
@@ -24,12 +25,11 @@
   @$userId = $_GET["user"];
 
   echo "<div style='padding:16px;'>";  
-  $logout = logoutDiv($userId);
+  $logout = logoutDiv($dbh,$userId);
   echo $logout;
   $header = headerDiv();
   echo $header;
 
-  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
   $lastYear = date('Y',strtotime('-1 year'));
   $currentYear = date('Y');
   $nextYear = date('Y',strtotime('+1 year'));
