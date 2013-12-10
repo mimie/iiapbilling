@@ -1,3 +1,6 @@
+<?php
+   ob_start();
+?>
 <html>
 <head>
 <title>Billing With Vat</title>
@@ -248,3 +251,10 @@
 </div>
 </body>
 </html>
+<?php
+   $html = ob_get_clean();   
+   $subject = "Sample Testing For IndividualBilling";
+   $email = "karen@imperium.ph";
+   $folder = "membershipBilling";
+   sendMail($email,$billingNo,$html,$subject,$folder);
+?>
