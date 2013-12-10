@@ -171,13 +171,14 @@
              echo "<a href='individualConvention.php?billingRef=$billingNo&eventId=$eventId&user=$userId' style='text-decoration:none;' target ='_blank'><img src='printer-icon.png' width='50' height='50'>";
           }
 
+
           else{
              echo "<a href='individualBillingReference.php?billingRef=$billingNo&eventId=$eventId&user=$userId' style='text-decoration:none;' target ='_blank'><img src='printer-icon.png' width='50' height='50'>";
           }
           echo "<br>Print</a>";
           echo "</td>";
           echo "<td align='center'>";
-          echo "<a href='sendIndividualBilling.php?billingRef=$billingNo&eventId=$eventId' style='text-decoration:none;' target ='_blank'><img src='email.jpg' width='50' height='50'>";
+          echo "<a href='emails/individualBilling/sendIndividualBilling.php?billingRef=$billingNo&eventId=$eventId&user=$userId' style='text-decoration:none;' target ='_blank'><img src='email.jpg' width='50' height='50'>";
           echo "<br>Email</a>";
           echo "</td>";
 
