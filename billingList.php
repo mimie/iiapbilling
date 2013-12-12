@@ -13,7 +13,7 @@
   include '../weberpdev/postFunction.php';
   include 'send_functions.php';
 
-   $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
+   $dbh = new PDO('mysql:host=10.110.215.92;dbname=iiap_civicrm_dev', 'iiap', 'mysqladmin');
    $weberpConn = new PDO('mysql:host=10.110.215.92;dbname=IIAP_DEV','iiap','mysqladmin');
    @$eventId = $_GET["eventId"];
 

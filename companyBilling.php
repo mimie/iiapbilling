@@ -8,6 +8,7 @@
 <?php
 
   include 'dbcon.php';
+  include 'pdo_conn.php';
   include 'badges_functions.php';
   include 'weberp_functions.php';
   include 'billing_functions.php';
@@ -15,8 +16,8 @@
   include 'send_functions.php';
   include 'login_functions.php';
 
-   $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
-   $weberpConn = new PDO('mysql:host=localhost;dbname=IIAP_DEV','root','mysqladmin');
+   $dbh = civicrmConnect();
+   $weberpConn = weberpConnect();
  
    session_start();
    //if the user has not logged in

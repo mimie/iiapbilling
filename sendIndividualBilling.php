@@ -49,7 +49,7 @@
 <body>
 <?php
 
-  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
+  $dbh = new PDO('mysql:host=10.110.215.92;dbname=iiap_civicrm_dev', 'iiap', 'mysqladmin');
   include 'dbcon.php';
   include 'badges_functions.php';
   include 'weberp_functions.php';

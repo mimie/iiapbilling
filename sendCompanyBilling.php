@@ -45,11 +45,13 @@
 <body>
 <?php
 
-  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
   include 'dbcon.php';
+  include 'pdo_conn.php';
   include 'badges_functions.php';
   include 'weberp_functions.php';
   include 'billing_functions.php';
+
+  $dbh = civicrmConnect();
 
   /**@$billingNo = $_GET["billingRef"];
   @$eventId = $_GET["eventId"];

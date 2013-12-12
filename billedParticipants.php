@@ -12,7 +12,8 @@ body{overflow:hidden;}
 
   include 'billing_functions.php';
   include 'login_functions.php';
-  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin'); 
+  include 'pdo_conn.php';
+  $dbh = civicrmConnect();
  
   session_start();
   //if the user has not logged in

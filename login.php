@@ -4,6 +4,7 @@
 </head>
 <body>
 <?php
+   include 'pdo_conn.php';
    include 'login_functions.php';
    echo "<div align='center' style='padding:16px;'>";  
    $header = headerDiv();
@@ -35,7 +36,7 @@
   </table>
 </div>
 <?php
-  $dbh =  new PDO('mysql:host=localhost;dbname=webapp_civicrm','root', 'mysqladmin');
+  $dbh =  civicrmConnect();
   if(isset($_POST["login"])){
      session_start();
      $username = $_POST["username"];

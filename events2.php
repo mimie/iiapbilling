@@ -20,11 +20,12 @@
 <?php
   
   include 'dbcon.php';
+  include 'pdo_conn.php';
   include 'badges_functions.php';
   include 'weberp_functions.php';
   include 'login_functions.php';
  
-  $dbh = new PDO('mysql:host=localhost;dbname=webapp_civicrm', 'root', 'mysqladmin');
+  $dbh = civicrmConnect();
  
   session_start();
   //if the user has not logged in
