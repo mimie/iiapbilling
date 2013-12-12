@@ -52,14 +52,14 @@
 <body>
 <?php
 
-  $dbh = new PDO('mysql:host=10.110.215.92;dbname=iiap_civicrm_dev','iiap', 'mysqladmin');
-  /**include 'dbcon.php';
-  include 'badges_functions.php';**/
   include '../../weberp_functions.php';
+  include '../../pdo_conn.php';
   include '../../billing_functions.php';
   include '../../send_functions.php';
   include '../../membership_functions.php';
   include '../../login_functions.php';
+
+  $dbh = civicrmConnect();
  
   session_start();
   //if the user has not logged in
@@ -208,6 +208,6 @@
 </html>
 <?php
   $html = ob_get_clean();
-  $file = "membershipBilling.php";
+  $file = "membershipIndividualBilling.php";
   generatePDFBilling($html,$billingNo,$file);  
 ?>
