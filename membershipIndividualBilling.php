@@ -56,23 +56,31 @@
    </table><br>
 
     <form method="POST" action="">
-     <select name="expiredDate" id="expiredDate">
-      <option value="select">- Select date of expiration -</option>
-      <option value="<?=$lastExpiredDate?>"><?=$formatLast?></option>
-      <option value="<?=$currentExpiredDate?>"><?=$formatCurrent?></option>
-      <option value="<?=$nextExpiredDate?>"><?=$formatNext?></option>
-     </select>&nbsp;
-
-     <select name="searchOptions" id="searchOptions">
-       <option value="select">- Select search option -</option>
-       <option value="Name">Name</option>
-       <option value="Status">Status</option>
-     </select>
-     <input type="submit" name="dates" value="View Members" onclick="defaultSelect(document.getElementById('expiredDate'),'Please select an expired date to view members.')">
-        <div id="searchName" style="display:none;">
-         <input type="textbox" name="name">
-        </div>
-    </form>    
+      <div style="float:left;">
+        <select name="expiredDate" id="expiredDate">
+         <option value="select">- Select date of expiration -</option>
+         <option value="<?=$lastExpiredDate?>"><?=$formatLast?></option>
+         <option value="<?=$currentExpiredDate?>"><?=$formatCurrent?></option>
+         <option value="<?=$nextExpiredDate?>"><?=$formatNext?></option>
+        </select>&nbsp;
+        <select name="searchOptions" id="searchOptions">
+         <option value="select">- Select search option -</option>
+         <option value="Name">Name</option>
+         <option value="Status">Status</option>
+        </select>
+      </div>
+      <!--This textbox will appear only when name is selected in the search options-->
+      <div id="searchName" style="display:none;float:left;">
+        &nbsp;&nbsp;Member Name:&nbsp;<input type="textbox" name="name">
+      </div>
+      <!-- This textbox will appear only when status is selected in the search options-->
+      <div id="searchStatus" style="display:none;float:left;">
+        &nbsp;&nbsp;Status:&nbsp;<input type="textbox" name="status">
+      </div>
+      <div style="float:left;">
+        <input type="submit" name="dates" value="View Members" onclick="defaultSelect(document.getElementById('expiredDate'),'Please select an expired date to view members.')">
+      </div>
+    </form><br>    
 <?php
 
   if(isset($_POST["expiredDate"])){
@@ -154,13 +162,13 @@
          <input type="radio" name="year" value="<?=$nextYear?>"><?=$nextYear?><br>
        </div>
     <input type="checkbox" id="check">Check All
-    </div>
 
 <?php
 
   $displayBilling = displayMemberBilling($dbh,$members,$expiredDate,$userId);
   echo $displayBilling;
   echo "</form>";
+  echo "</div>";
 
 
   if(isset($_POST["actionType"]) == 'Generate Bill'){
@@ -206,10 +214,17 @@
     var selectedOption = this.value;
     if(selectedOption == "Name"){
       $("#searchName").show();
+      $("#searchStatus").hide();
     }
 
-    if(selectedOption == "Status" || selectedOption == "select"){
+    if(selectedOption == "Status"){
       $("#searchName").hide();
+      $("#searchStatus").show();
+    }
+
+    if(selectedOption == "select"){
+      $("#searchName").hide();
+      $("#searchStatus").hide();
     }
     
     //alert("something");
