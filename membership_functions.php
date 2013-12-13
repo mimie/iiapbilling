@@ -296,22 +296,42 @@ function getMemberBillingDetails($dbh,$billingId){
 
 function getAllMembershipStatus(PDO $dbh){
 
- $sql = $dbh->prepare("SELECT id, name FROM civicrm_membership_status");
- $sql->execute();
+   $sql = $dbh->prepare("SELECT id, name FROM civicrm_membership_status");
+   $sql->execute();
 
- $result = $sql->fetchAll(PDO::FETCH_ASSOC);
- $status = array();
+   $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+   $status = array();
 
- foreach($result as $key => $value){
+   foreach($result as $key => $value){
 
-   $id = $value["id"];
-   $name = $value["name"];
+     $id = $value["id"];
+     $name = $value["name"];
 
-   $status[$id] = $name;
- }
+     $status[$id] = $name;
+   }
 
- return $status;
-
+  return $status;
 }
+
+function getAllMembershipType(PDO $dbh){
+
+  $sql = $dbh->prepare("SELECT id,name FROM civicrm_membership_type");
+  $sql->execute();
+
+  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+  $type = array();
+
+  foreach($result as $key => $value){
+    
+    $id = $value["id"];
+    $name = $value["name"];
+
+    $type[$id] = $name;
+  }
+
+  return $type;
+}
+
+
 
 ?>
