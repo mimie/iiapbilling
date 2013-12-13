@@ -75,7 +75,16 @@
       </div>
       <!-- This textbox will appear only when status is selected in the search options-->
       <div id="searchStatus" style="display:none;float:left;">
-        &nbsp;&nbsp;Status:&nbsp;<input type="textbox" name="status">
+        &nbsp;&nbsp;Status:&nbsp;
+        <select name="status">
+        <option value="select">- Select membership status -</option>
+<?php
+        $status = getAllMembershipStatus($dbh);
+        foreach($status as $statusId => $statusName){
+          echo "<option value=$statusId>$statusName</option>";
+        }
+?>
+        </select>
       </div>
       <div style="float:left;">
         <input type="submit" name="dates" value="View Members" onclick="defaultSelect(document.getElementById('expiredDate'),'Please select an expired date to view members.')">
