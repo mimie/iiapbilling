@@ -67,6 +67,8 @@
          <option value="select">- Select search option -</option>
          <option value="Name">Name</option>
          <option value="Status">Status</option>
+         <option value="Membership Type">Membership Type</option>
+         <option value="statusAndType">Status and Membership Type</option>
         </select>
       </div>
       <!--This textbox will appear only when name is selected in the search options-->
@@ -86,6 +88,20 @@
 ?>
         </select>
       </div>
+      <div id="searchType" style="display:none;float:left">
+        &nbsp;&nbsp;Membership Type:&nbsp;
+        <select name="type">
+          <option value="select">- Select membership type -</option>
+<?php
+         $type = getAllMembershipType($dbh);
+
+         foreach($type as $typeId => $membershipType){
+             echo "<option value='$typeId'>$membershipType</option>";
+         }
+?>
+        </select>
+      </div>
+      
       <div style="float:left;">
         <input type="submit" name="dates" value="View Members" onclick="defaultSelect(document.getElementById('expiredDate'),'Please select an expired date to view members.')">
       </div>
@@ -224,16 +240,31 @@
     if(selectedOption == "Name"){
       $("#searchName").show();
       $("#searchStatus").hide();
+      $("#searchType").hide();
     }
 
     if(selectedOption == "Status"){
       $("#searchName").hide();
+      $("#searchType").hide();
       $("#searchStatus").show();
     }
 
     if(selectedOption == "select"){
       $("#searchName").hide();
       $("#searchStatus").hide();
+      $("#searchType").hide();
+    }
+
+    if(selectedOption == "Membership Type"){
+      $("#searchName").hide();
+      $("#searchStatus").hide();
+      $("#searchType").show();
+    }
+
+    if(selectedOption == "statusAndType"){
+      $("#searchName").hide();
+      $("#searchStatus").show();
+      $("#searchType").show();
     }
     
     //alert("something");
