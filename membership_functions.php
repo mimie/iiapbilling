@@ -347,6 +347,26 @@ function getAllMembershipType(PDO $dbh){
   return $type;
 }
 
+/*
+ *this will get all organizations listed in the civicrm contact
+ */
+function getAllCompanies(PDO $dbh){
 
+ $sql = $dbh->prepare("SELECT id, display_name FROM civicrm_contact 
+                       WHERE contact_type='Organization' ORDER BY display_name");
+ $sql->execute();
+ $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+ $companies = array();
+
+ foreach($result as $key => $value){
+  
+   $id = $value["id"];
+   $orgName = $value["display_name"];
+   $companies[$id] = $orgName;
+ }
+
+ return $companies;
+
+}
 
 ?>
