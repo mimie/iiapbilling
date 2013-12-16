@@ -114,6 +114,13 @@
     $membersToExpire = getMembersToExpire($dbh,$expiredDate);
   }
 
+  elseif(isset($_POST["expiredDate"]) && isset($_POST["name"])){
+
+    $name = $_POST["name"];
+    $expiredDate = $_POST["expiredDate"];
+    $membersToExpire = getMembersByName($dbh,$expiredDate,$name);
+  }
+
   else{
     
     $expiredDate = $currentExpiredDate;
