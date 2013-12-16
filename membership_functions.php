@@ -11,8 +11,22 @@ function getMembersToExpire(PDO $dbh,$endDate){
                         FROM civicrm_membership
                         WHERE membership_type_id = '1'
                         AND end_date = ?
-                        LIMIT 20
                        ");
+  $sql->bindParam(1,$endDate,PDO::PARAM_STR,10);
+  $sql->execute();
+  $details = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  return $details;
+}
+
+function getMembersByName(PDO $dbh, $endDate,$name){
+
+  $sql = $dbh->prepare("SELECT cm.id, cm.contact_id, cm.end_date,cm.status_id,cm.membership_type_id,cm.join_date,cm.start_date,cm.end_date
+                        FROM civicrm_membership cm, civicrm_contact cc
+                        WHERE membership_type_id = '1'
+                        AND cm.end_date = ?
+                        AND cc.display_name LIKE '%$name%'
+                      ");
   $sql->bindParam(1,$endDate,PDO::PARAM_STR,10);
   $sql->execute();
   $details = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -223,13 +237,14 @@ function displayMemberInfo(PDO $dbh,array $memberInfo){
 
 function getOrgId($dbh,$organization){
 
-   $sql = $dbh->prepare("SELECT id FROM civicrm_contact
+  //$organization = stripslashes($organization); 
+  $sql = $dbh->prepare("SELECT id FROM civicrm_contact
                          WHERE contact_type = 'Organization'
-                         AND display_name = '$organization'
-                        ");
+                         AND display_name LIKE '%?%' ");
+  
   $sql->execute();
+  $sql->bindParam(1, $organization, PDO::PARAM_STR,250);
   $result = $sql->fetch(PDO::FETCH_ASSOC);
-
   $orgId = $result["id"];
    
   return $orgId;
