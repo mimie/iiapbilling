@@ -369,4 +369,20 @@ function getAllCompanies(PDO $dbh){
 
 }
 
+function displayAllCompanies(PDO $dbh,array $companies){
+
+  $html = "<table>"
+        . "<tr>"
+        . "<th>Organization Name</th><th>View Employees</th>"
+        . "</tr>";
+  foreach($companies as $id => $orgName){
+    
+    $html = $html."<tr>"
+          . "<td>$orgName</td><td>Employees</td>"
+          . "</tr>";
+  }
+
+  $html = $html."</table>";
+  return $html;
+}
 ?>
