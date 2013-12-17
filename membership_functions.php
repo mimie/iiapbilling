@@ -459,4 +459,54 @@ function getIndividualMemberDetails(PDO $dbh,$contactId){
   
 }
 
+function displayBilledMembers($billedMembers){
+
+  $html = "<table>"
+        . "<tr>"
+        . "<th>Select Members</th>"
+        . "<th>Member Name</th>"
+        . "<th>Email</th>"
+        . "<th>Membership Status</th>"
+        . "<th>Member Fee Amount</th>"
+        . "<th>Address</th>"
+        . "<th>Member Id</th>"
+        . "<th>Join Date</th>"
+        . "<th>Start Date</th>"
+        . "<th>End Date</th>"
+        . "</tr>";
+
+  foreach($billedMembers as $membershipId => $details){
+    
+     $name = $details["name"];
+     $email = $details["email"];
+     $status = $details["status"];
+     $feeAmount = $details["fee_amount"];
+     $address = $details["address"];
+     $memberId = $details["member_id"];
+     $joinDate = $details["join_date"];
+     $joinDate = date("F j Y",strtotime($joinDate));
+     $startDate = $details["start_date"];
+     $startDate = date("F j Y",strtotime($startDate));
+     $endDate = $details["end_date"];
+     $endDate = date("F j Y",strtotime($endDate));
+
+    $html = $html."<tr>"
+          . "<td><input type='checkbox'></td>"
+          . "<td>$name</td>"
+          . "<td>$email</td>"
+          . "<td>$status</td>"
+          . "<td>$feeAmount</td>"
+          . "<td>$address</td>"
+          . "<td>$memberId</td>"
+          . "<td>$joinDate</td>"
+          . "<td>$startDate</td>"
+          . "<td>$endDate</td>"
+          . "</tr>";
+  }   
+      
+  $html = $html."</table>";
+
+  return $html;
+}
+
 ?>
