@@ -371,18 +371,39 @@ function getAllCompanies(PDO $dbh){
 
 function displayAllCompanies(PDO $dbh,array $companies){
 
-  $html = "<table>"
+  $html = "<table width='100%'>"
         . "<tr>"
-        . "<th>Organization Name</th><th>View Employees</th>"
+        . "<th>Organization Name</th>"
+        . "<th>Email</th>"
+        . "<th>Total Amount</th>"
+        . "<th>Print Bill</th>"
+        . "<th>Send Bill</th>"
+        . "<th>Payment Status</th>"
+        . "<th>Billing Reference No.</th>"
+        . "<th>Billing Date</th>"
+        . "<th>Billing Address</th>"
+        . "<th>Select Employees For Billing</th>"
+        . "<th>Billing PDF Download</th>"
         . "</tr>";
   foreach($companies as $id => $orgName){
     
     $html = $html."<tr>"
-          . "<td>$orgName</td><td>Employees</td>"
+          . "<td>$orgName</td>"
+          . "<td>Email</td>"
+          . "<td>Total Amount</td>"
+          . "<td>Print Bill</td>"
+          . "<td>Send Bill</td>"
+          . "<td>Payment Status</td>"
+          . "<td>Billing Reference No.</td>"
+          . "<td>Billing Date</td>"
+          . "<td>Billing Address</td>"
+          . "<td><img src='images/add_icon.png'></td>"
+          . "<td>Billing PDF Download</td>"
           . "</tr>";
   }
 
   $html = $html."</table>";
   return $html;
 }
+
 ?>
