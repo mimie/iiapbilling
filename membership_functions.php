@@ -444,4 +444,19 @@ function groupMembersByCompany(PDO $dbh){
   return $groupByCompany;
 }
 
+function getIndividualMemberDetails(PDO $dbh,$contactId){
+
+  $sql = $dbh->prepare("SELECT id,membership_type_id, join_date, start_date, end_date, status_id
+                        FROM civicrm_membership
+                        WHERE contact_id = :contactId
+                      ");
+
+  $sql->bindParam(':contactId',$contactId,PDO::PARAM_INT);
+  $sql->execute();
+  $result = $sql->fetch(PDO::FETCH_ASSOC);
+
+  return $result;
+  
+}
+
 ?>
