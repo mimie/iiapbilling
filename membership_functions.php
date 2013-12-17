@@ -397,7 +397,7 @@ function displayAllCompanies(PDO $dbh,array $companies){
           . "<td>Billing Reference No.</td>"
           . "<td>Billing Date</td>"
           . "<td>Billing Address</td>"
-          . "<td><img src='images/add_icon.png'></td>"
+          . "<td><a href='selectMembersBilling.php?orgId=$id' target='_blank'><img src='images/add_icon.png'></a></td>"
           . "<td>Billing PDF Download</td>"
           . "</tr>";
   }
