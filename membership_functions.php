@@ -240,10 +240,10 @@ function getOrgId($dbh,$organization){
   //$organization = stripslashes($organization); 
   $sql = $dbh->prepare("SELECT id FROM civicrm_contact
                          WHERE contact_type = 'Organization'
-                         AND display_name LIKE '%?%' ");
+                         AND display_name = :organization_name");
   
+  $sql->bindParam(':organization_name', $organization, PDO::PARAM_STR,250);
   $sql->execute();
-  $sql->bindParam(1, $organization, PDO::PARAM_STR,250);
   $result = $sql->fetch(PDO::FETCH_ASSOC);
   $orgId = $result["id"];
    
@@ -404,6 +404,44 @@ function displayAllCompanies(PDO $dbh,array $companies){
 
   $html = $html."</table>";
   return $html;
+}
+
+/*
+ *this will group contacts by organization
+ *the organization_id => contactIds(that exist in civicrm_membership)
+ */
+function groupMembersByCompany(PDO $dbh){
+
+  $sql = $dbh->prepare("SELECT DISTINCT(cc.id), cc.organization_name
+                        FROM civicrm_contact cc, civicrm_membership cm
+                        WHERE cc.id = cm.contact_id
+                        AND cc.organization_name != 'NULL'
+                       ");
+  $sql->execute();
+  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  $groupByCompany = array();
+
+  foreach($result as $key => $value){
+    $contacts = array();
+
+    $contactId = $value["id"];
+    $orgName = $value["organization_name"];
+    $orgId = getOrgId($dbh,$orgName);
+
+    if(array_key_exists($orgId,$groupByCompany)){
+       $contacts = $groupByCompany[$orgId];
+       array_push($contacts,$contactId);
+       $groupByCompany[$orgId] = $contacts;
+    }
+
+    else{
+       array_push($contacts,$contactId);
+       $groupByCompany[$orgId] = $contacts;
+    }
+  }
+
+  return $groupByCompany;
 }
 
 ?>
