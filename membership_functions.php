@@ -509,4 +509,46 @@ function displayBilledMembers($billedMembers){
   return $html;
 }
 
+function getMembersByOrgId(PDO $dbh,$orgId){
+
+  $sql = $dbh->prepare("SELECT ci.display_name as name,cm.contact_id,
+                        co.display_name as organization_name,cm.id,cm.end_date,
+                        cm.start_date,cm.join_date,status_id,membership_type_id
+                        FROM civicrm_contact co
+                        INNER JOIN civicrm_contact ci ON co.organization_name = ci.organization_name
+                        INNER JOIN civicrm_membership cm ON ci.id = cm.contact_id
+                        WHERE co.contact_type = 'Organization'
+                        AND co.id = :orgId
+                        ORDER BY co.id, ci.id
+                       ");
+
+  $sql->bindParam(':orgId',$orgId,PDO::PARAM_INT);
+  $sql->execute();
+  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  return $result;
+}
+
+function getMembersByDate(PDO $dbh,$orgId,$date){
+
+  $sql = $dbh->prepare("SELECT ci.display_name as name,cm.contact_id,
+                        co.display_name as organization_name,cm.id,cm.end_date,
+                        cm.start_date,cm.join_date,status_id,membership_type_id
+                        FROM civicrm_contact co
+                        INNER JOIN civicrm_contact ci ON co.organization_name = ci.organization_name
+                        INNER JOIN civicrm_membership cm ON ci.id = cm.contact_id
+                        WHERE co.contact_type = 'Organization'
+                        AND co.id = :orgId
+                        AND cm.end_date = :endDate
+                        ORDER BY co.id, ci.id
+                       ");
+
+  $sql->bindParam(':orgId',$orgId,PDO::PARAM_INT);
+  $sql->bindParam(':endDate',$date,PDO::PARAM_STR);
+  $sql->execute();
+  $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+  return $result;
+}
+
 ?>
