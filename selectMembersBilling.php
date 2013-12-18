@@ -21,36 +21,98 @@
 </head>
 <body>
 <?php
+  $lastYear = date('Y',strtotime('-1 year'));
+  $currentYear = date('Y');
+  $nextYear = date('Y',strtotime('+1 year'));
 
-  $membersList = groupMembersByCompany($dbh);
-  
-  if(array_key_exists($orgId,$membersList)){
-    $contactList = $membersList[$orgId];
-    $members = array();
-    
-    foreach($contactList as $contactId){
+  //$expiredDate = date('Y-m-d',strtotime($currentYear.'-12-31'));
+  $currentExpiredDate = date('Y-m-d',strtotime($currentYear.'-12-31'));
+  $lastExpiredDate = date('Y-m-d',strtotime($lastYear.'-12-31'));
+  $nextExpiredDate = date('Y-m-d',strtotime($nextYear.'-12-31'));
 
+  $formatCurrent = date('F j Y',strtotime($currentExpiredDate));
+  $formatLast = date('F j Y',strtotime($lastExpiredDate));
+  $formatNext = date('F j Y',strtotime($nextExpiredDate));
+
+?>
+<form method="POST" action="">
+  <select name="expiredDate">
+    <option value="select">- Select date of expiration -</option>
+    <option value="<?=$lastExpiredDate?>"><?=$formatLast?></option>
+    <option value="<?=$currentExpiredDate?>"><?=$formatCurrent?></option>
+    <option value="<?=$nextExpiredDate?>"><?=$formatNext?></option>
+  </select>&nbsp;
+  <input type="submit" name="dates" value="View Members" onclick="defaultSelect(document.getElementById('expiredDate'),'Please select an expired date to view members.')">
+</form>
+<?php
+
+   $membersList = getMembersByOrgId($dbh,$orgId);
+   $members = array();
+   
+   foreach($membersList as $member){
+     $memberInfo = array();
+
+     $membershipId = $member["id"];
+     $name = $member["name"];
+     $contactId = $member["contact_id"];
+     $orgName = $member["organization_name"];
+     $endDate = $member["end_date"];
+     $startDate = $member["start_date"];
+     $joinDate = $member["join_date"];
+     $statusId = $member["status_id"];
+     $typeId = $member["membership_type_id"];
+     
+     $status = getMembershipStatus($dbh,$statusId);
+     $memberId = getMemberId($dbh,$contactId);
+
+     $email = getContactEmail($dbh,$contactId);
+     $feeAmount = getMemberFeeAmount($dbh,$typeId);
+     $addressDetails = getAddressDetails($dbh,$contactId);
+     $street = $addressDetails["street"];
+     $city = $addressDetails["city"];
+     $address = $street." ".$city;
+
+     $memberInfo["name"] = $name;
+     $memberInfo["email"] = $email;
+     $memberInfo["status"] = $status;
+     $memberInfo["fee_amount"] = $feeAmount;
+     $memberInfo["address"] = $address;
+     $memberInfo["member_id"] = $memberId;
+     $memberInfo["join_date"] = $joinDate;
+     $memberInfo["start_date"] = $startDate;
+     $memberInfo["end_date"] = $endDate;
+
+     $members[$membershipId] = $memberInfo;
+   }
+
+   if(isset($_POST["expiredDate"])){
+     $date = $_POST["expiredDate"];
+     $membersList = getMembersByDate($dbh,$orgId,$date);
+     $members = array();
+   
+     foreach($membersList as $member){
        $memberInfo = array();
-    
-       $membershipDetails = getIndividualMemberDetails($dbh,$contactId);
-       $membershipId = $membershipDetails["id"];
-       $typeId = $membershipDetails["membership_type_id"];
-       $statusId = $membershipDetails["status_id"];
-       $joinDate = $membershipDetails["join_date"];
-       $startDate = $membershipDetails["start_date"];
-       $endDate = $membershipDetails["end_date"];
+
+       $membershipId = $member["id"];
+       $name = $member["name"];
+       $contactId = $member["contact_id"];
+       $orgName = $member["organization_name"];
+       $endDate = $member["end_date"];
+       $startDate = $member["start_date"];
+       $joinDate = $member["join_date"];
+       $statusId = $member["status_id"];
+       $typeId = $member["membership_type_id"];
+     
        $status = getMembershipStatus($dbh,$statusId);
        $memberId = getMemberId($dbh,$contactId);
-       
-       $contactDetails = getContactDetails($dbh,$contactId);
-       $name = $contactDetails["name"];
+
        $email = getContactEmail($dbh,$contactId);
        $feeAmount = getMemberFeeAmount($dbh,$typeId);
        $addressDetails = getAddressDetails($dbh,$contactId);
        $street = $addressDetails["street"];
        $city = $addressDetails["city"];
        $address = $street." ".$city;
- 
+
        $memberInfo["name"] = $name;
        $memberInfo["email"] = $email;
        $memberInfo["status"] = $status;
@@ -62,18 +124,15 @@
        $memberInfo["end_date"] = $endDate;
 
        $members[$membershipId] = $memberInfo;
-    }
+     }
+   $billedMembers = displayBilledMembers($members);
+   echo $billedMembers;
 
-    echo "<pre>";
-    print_r($members);
-    echo "</pre>";
-  }
-
-  else{
-    echo "There are no members in this company.";
-  }
-
-
+   }
+   else{
+   $billedMembers = displayBilledMembers($members);
+   echo $billedMembers;
+   }
 
 ?>
 </body>
